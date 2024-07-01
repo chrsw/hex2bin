@@ -1,13 +1,15 @@
 // hex2bin  convert 2 digit hex number to 8 digit binary number
 //
-// Two digit hex number is to be passed on command line, program returns 8 
-// digit binary representation of the input word onto standard output
-//
+// Two digit hex number is passed on command line, program returns 8 
+// digit binary representation of the input word onto standard output.
+// For example:
 // $ ./hex2bin hh
 // bbbbbbbb
 //
+// Building:
 // $ gcc -o hex2bin hex2bin.c
 // $ gcc -DDEBUG -o hex2bin hex2bin.c
+// - or -
 // $ make hex2bin
 // $ make test
 //

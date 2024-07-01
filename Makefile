@@ -1,5 +1,4 @@
 # hex2bin Makefile
-# 
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Wpedantic
@@ -26,10 +25,10 @@ distclean:	## Remove all object code
 	rm -f hex2bin hex2bin.o
 
 destroy:	## Remove everything
-	rm -rf hex2bin hex2bin.o output.txt
+	rm -rf hex2bin hex2bin.o output.txt hex2bin_dbg
 
+# Build a makefile help menu dynamically using, inspired by the pattern from:
+# https://marmelab.com/blog/2016/02/29/auto-documented-makefile.html
 .PHONY: help
-
-# From https://marmelab.com/blog/2016/02/29/auto-documented-makefile.html
 help:		## Show this help
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
