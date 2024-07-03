@@ -2,7 +2,8 @@
 //
 // Two digit hex number is passed on command line, program returns 8 
 // digit binary representation of the input word onto standard output.
-// For example:
+//
+// To run:
 // $ ./hex2bin hh
 // bbbbbbbb
 //
@@ -18,7 +19,6 @@
 // TODO:
 // Accept 0xHH, 0xhh, HH or hh
 // Accept xxh or xxH
-// Split functions to separate files
 // Find better ways of cleaning lint warings, .e.g. no casting.
 //
 //////////////////////////////////////////////////////////////////////////////

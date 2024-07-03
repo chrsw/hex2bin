@@ -12,7 +12,7 @@ debug: hex2bin.c ## Generate a debug build
 all: hex2bin
 
 lint:		## Check source with splint linter
-	splint -compdef hex2bin.c
+	splint hex2bin.c
 
 test: hex2bin	## Run a simple test
 	./hex2bin A5 > output.txt
