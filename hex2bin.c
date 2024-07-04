@@ -1,9 +1,9 @@
 // hex2bin  convert 2 digit hex number to 8 digit binary number
 //
-// Two digit hex number is passed on command line, program returns 8 
-// digit binary representation of the input word onto standard output.
+// Two digit hex number is passed on command line, hex2bin prints 8 
+// digit binary representation of the input to standard output.
 //
-// To run:
+// Example run:
 // $ ./hex2bin hh
 // bbbbbbbb
 //
@@ -17,9 +17,10 @@
 ///////////////////////////////////////////////////////////////////////////// 
 
 // TODO:
-// Accept 0xHH, 0xhh, HH or hh
-// Accept xxh or xxH
+// Accept 0xHH, 0xhh, HH or hh.
+// Accept xxh or xxH.
 // Find better ways of cleaning lint warings, .e.g. no casting.
+// Implement better error handlings.
 //
 //////////////////////////////////////////////////////////////////////////////
 
@@ -31,20 +32,21 @@ static unsigned char htoi(char *s);
 static void dec2bin(unsigned char c, unsigned char bin[]);
 
 
+// hex2bin:  convert a 2 digit hex string into a binary string
 int main(int argc, char *argv[]) {
 
-	unsigned char ucRes;
+	unsigned char res;
 	unsigned char bin[9];
 
-	if (argc != 2) exit(EXIT_SUCCESS);
+	if (argc != 2) exit(EXIT_FAILURE);
 
 	memset(bin, 0, 9);
-	ucRes = htoi(argv[1]);
+	res = htoi(argv[1]);
 #if DEBUG
 	printf("main: \tfirst char: %c\n", argv[1][0]);
-	printf("main: \tinput = %u\n", (unsigned int)ucRes);
+	printf("main: \tinput = %u\n", (unsigned int)res);
 #endif
-	dec2bin(ucRes, bin);
+	dec2bin(res, bin);
 	printf("%s\n", (char *)bin);
 	return(EXIT_SUCCESS);
 }
@@ -52,6 +54,7 @@ int main(int argc, char *argv[]) {
 
 // htoi:  convert a 2 digit hex string of capital letters to a positive integer
 static unsigned char htoi(char *s) {
+
 	unsigned int i;
 
 	// convert low nibble
@@ -81,7 +84,9 @@ static void dec2bin(unsigned char c, unsigned char bin[]) {
 
 	int i = 0;
 	unsigned char lc = c;
-	//printf("dec2bin: c = %d\n", c);
+#ifdef DEBUG
+	printf("dec2bin: c = %d\n", c);
+#endif
 	for (i = 7; i >= 0; i--)  {
 		if ((lc % 2) == (unsigned char)0)
 			bin[i] = '0';
