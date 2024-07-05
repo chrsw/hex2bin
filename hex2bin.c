@@ -14,6 +14,8 @@
 // $ make hex2bin
 // $ make test
 //
+// Use 'make help' for help menu.
+//
 ///////////////////////////////////////////////////////////////////////////// 
 
 // TODO:
@@ -33,7 +35,7 @@ static unsigned char htoi(char *s);
 static void dec2bin(unsigned char c, unsigned char bin[]);
 
 
-// hex2bin:  convert a 2 digit hex string into a binary string
+// hex2bin:  convert a 2 digit hex string into an 8 digit binary string
 int main(int argc, char *argv[]) {
 
 	unsigned char res;
@@ -53,10 +55,11 @@ int main(int argc, char *argv[]) {
 }
 
 
-// htoi:  convert a 2 digit hex string of capital letters to a positive integer
+// htoi:  convert a 2 digit hex string of capital letters to 8-bit positive
+//        integer
 static unsigned char htoi(char *s) {
 
-	unsigned int i;
+	unsigned int i = EOF;
 
 	// convert low nibble
 	if ((toupper(s[1]) >= 'A') && (toupper(s[1]) <= 'F'))
@@ -64,7 +67,7 @@ static unsigned char htoi(char *s) {
 	else if ((toupper(s[1]) >= '0') && (toupper(s[1]) <= '9'))
 		i = (unsigned int)toupper(s[1]) - 48;
 	else {
-		return (unsigned char)0;
+		return (unsigned char)i;
 	}
 
 	// convert high nibble
@@ -73,7 +76,7 @@ static unsigned char htoi(char *s) {
 	else if (toupper(s[0]) >= '0' && toupper(s[0]) <= '9')
 		i = i + (((unsigned int)toupper(s[0]) - 48) * 16);
 	else {
-		return (unsigned char)0;
+		return (unsigned char)i;
 	}
 
 	return (unsigned char)i;
