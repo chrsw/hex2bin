@@ -17,7 +17,7 @@
 ///////////////////////////////////////////////////////////////////////////// 
 
 // TODO:
-// Accept 0xHH, 0xhh, HH or hh.
+// Accept 0xHH, 0xhh.
 // Accept xxh or xxH.
 // Find better ways of cleaning lint warings, .e.g. no casting.
 // Implement better error handlings.
@@ -27,6 +27,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 static unsigned char htoi(char *s);
 static void dec2bin(unsigned char c, unsigned char bin[]);
@@ -58,19 +59,19 @@ static unsigned char htoi(char *s) {
 	unsigned int i;
 
 	// convert low nibble
-	if ((s[1] >= 'A') && (s[1] <= 'F'))
-		i = (unsigned int)s[1] - 55;
-	else if ((s[1] >= '0') && (s[1] <= '9'))
-		i = (unsigned int)s[1] - 48;
+	if ((toupper(s[1]) >= 'A') && (toupper(s[1]) <= 'F'))
+		i = (unsigned int)toupper(s[1]) - 55;
+	else if ((toupper(s[1]) >= '0') && (toupper(s[1]) <= '9'))
+		i = (unsigned int)toupper(s[1]) - 48;
 	else {
 		return (unsigned char)0;
 	}
 
 	// convert high nibble
-	if (s[0] >= 'A' && s[0] <= 'F')
-		i = i + (((unsigned int)s[0] - 55) * 16);
-	else if (s[0] >= '0' && s[0] <= '9')
-		i = i + (((unsigned int)s[0] - 48) * 16);
+	if (toupper(s[0]) >= 'A' && toupper(s[0]) <= 'F')
+		i = i + (((unsigned int)toupper(s[0]) - 55) * 16);
+	else if (toupper(s[0]) >= '0' && toupper(s[0]) <= '9')
+		i = i + (((unsigned int)toupper(s[0]) - 48) * 16);
 	else {
 		return (unsigned char)0;
 	}
