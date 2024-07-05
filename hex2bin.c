@@ -59,21 +59,21 @@ int main(int argc, char *argv[]) {
 //        integer
 static unsigned char htoi(char *s) {
 
-	unsigned int i = EOF;
+	unsigned int i = (unsigned int)EOF;
 
 	// convert low nibble
-	if ((toupper(s[1]) >= 'A') && (toupper(s[1]) <= 'F'))
+	if (((char)toupper(s[1]) >= 'A') && ((char)toupper(s[1]) <= 'F'))
 		i = (unsigned int)toupper(s[1]) - 55;
-	else if ((toupper(s[1]) >= '0') && (toupper(s[1]) <= '9'))
+	else if (((char)toupper(s[1]) >= '0') && ((char)toupper(s[1]) <= '9'))
 		i = (unsigned int)toupper(s[1]) - 48;
 	else {
 		return (unsigned char)i;
 	}
 
 	// convert high nibble
-	if (toupper(s[0]) >= 'A' && toupper(s[0]) <= 'F')
+	if ((char)toupper(s[0]) >= 'A' && (char)toupper(s[0]) <= 'F')
 		i = i + (((unsigned int)toupper(s[0]) - 55) * 16);
-	else if (toupper(s[0]) >= '0' && toupper(s[0]) <= '9')
+	else if ((char)toupper(s[0]) >= '0' && (char)toupper(s[0]) <= '9')
 		i = i + (((unsigned int)toupper(s[0]) - 48) * 16);
 	else {
 		return (unsigned char)i;
