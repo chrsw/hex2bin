@@ -24,4 +24,5 @@ clean:			## Remove object code, binaries and test output
 # https://marmelab.com/blog/2016/02/29/auto-documented-makefile.html
 .PHONY: help
 help:			## Show this help
-	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "%-40s %s\n", $$1, $$2}'
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) |\
+	 awk 'BEGIN {FS = ":.*?## "}; {printf "%-40s %s\n", $$1, $$2}'
