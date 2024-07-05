@@ -21,8 +21,8 @@
 // TODO:
 // Accept 0xHH, 0xhh.
 // Accept xxh or xxH.
-// Find better ways of cleaning lint warings, .e.g. no casting.
-// Implement better error handlings.
+// Find better ways of cleaning lint warnings, .e.g. no casting.
+// Implement better error handling.
 //
 //////////////////////////////////////////////////////////////////////////////
 
