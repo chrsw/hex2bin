@@ -33,20 +33,26 @@
 
 static unsigned char htoi(char *s);
 static void dec2bin(unsigned char c, unsigned char bin[]);
-
+static void str2upper(char *s);
 
 // hex2bin:  convert a 2 digit hex string into an 8 digit binary string
 int main(int argc, char *argv[]) {
 
 	unsigned char res;
 	unsigned char bin[9];
+	int len = 0;
+	char hex[8];
 
 	if (argc != 2) exit(EXIT_FAILURE);
 
+	len = strlen(argv[1]);
+	strncpy(hex, argv[1], len);
+	str2upper(hex);
 	memset(bin, 0, 9);
-	res = htoi(argv[1]);
+	res = htoi(hex);
 #if DEBUG
 	printf("main: \tfirst char: %c\n", argv[1][0]);
+	printf("main: \tfirst char: %c\n", hex);
 	printf("main: \tinput = %u\n", (unsigned int)res);
 #endif
 	dec2bin(res, bin);
@@ -62,19 +68,19 @@ static unsigned char htoi(char *s) {
 	unsigned int i = (unsigned int)EOF;
 
 	// convert low nibble
-	if (((char)toupper(s[1]) >= 'A') && ((char)toupper(s[1]) <= 'F'))
-		i = (unsigned int)toupper(s[1]) - 55;
-	else if (((char)toupper(s[1]) >= '0') && ((char)toupper(s[1]) <= '9'))
-		i = (unsigned int)toupper(s[1]) - 48;
+	if ((s[1] >= 'A') && (s[1] <= 'F'))
+		i = s[1] - 55;
+	else if ((s[1] >= '0') && s[1] <= '9')
+		i = s[1] - 48;
 	else {
 		return (unsigned char)i;
 	}
 
 	// convert high nibble
-	if ((char)toupper(s[0]) >= 'A' && (char)toupper(s[0]) <= 'F')
-		i = i + (((unsigned int)toupper(s[0]) - 55) * 16);
+	if ((s[0] >= 'A') && (s[0] <= 'F'))
+		i = i + ((s[0] - 55) * 16);
 	else if ((char)toupper(s[0]) >= '0' && (char)toupper(s[0]) <= '9')
-		i = i + (((unsigned int)toupper(s[0]) - 48) * 16);
+		i = i + ((s[0] - 48) * 16);
 	else {
 		return (unsigned char)i;
 	}
@@ -102,4 +108,20 @@ static void dec2bin(unsigned char c, unsigned char bin[]) {
 #endif
 	}
 	bin[8] = '\0';
+}
+
+
+
+// str2upper: convert a string to upper case
+static void str2upper(char *s) {
+
+	int i = 0;
+	while (*s != '\0') {
+		*s = toupper(*s);
+		s++;
+		i++;
+	}
+#if DEBUG
+	printf("str2upper: %d\n", i);
+#endif
 }
