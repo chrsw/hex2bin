@@ -39,7 +39,7 @@ int main(int argc, char *argv[]) {
 
     unsigned char res;
     unsigned char bin[9];
-    int len = 0;
+    size_t len = 0;
     char hex[8];
     char *pin = NULL;
 
@@ -68,22 +68,22 @@ int main(int argc, char *argv[]) {
 //        integer
 static unsigned char htoi(char *s) {
 
-    unsigned int i = (unsigned int)EOF;
+    char i = (char)EOF;
 
     // convert low nibble
     if ((s[1] >= 'A') && (s[1] <= 'F'))
-        i = s[1] - 55;
+        i = s[1] - (char)55;
     else if ((s[1] >= '0') && s[1] <= '9')
-        i = s[1] - 48;
+        i = s[1] - (char)48;
     else {
         return (unsigned char)i;
     }
 
     // convert high nibble
     if ((s[0] >= 'A') && (s[0] <= 'F'))
-        i = i + ((s[0] - 55) * 16);
+        i = i + ((s[0] - (char)55) * (char)16);
     else if ((char)toupper(s[0]) >= '0' && (char)toupper(s[0]) <= '9')
-        i = i + ((s[0] - 48) * 16);
+        i = i + ((s[0] - (char)48) * (char)16);
     else {
         return (unsigned char)i;
     }
