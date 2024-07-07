@@ -1,6 +1,6 @@
 // hex2bin  convert 2 digit hex number to 8 digit binary number
 //
-// Two digit hex number is passed on command line, hex2bin prints 8 
+// Two digit hex number is passed on command line, hex2bin prints 8
 // digit binary representation of the input to standard output.
 //
 // Example run:
@@ -16,7 +16,7 @@
 //
 // Use 'make help' for help menu.
 //
-///////////////////////////////////////////////////////////////////////////// 
+/////////////////////////////////////////////////////////////////////////////
 
 // TODO:
 // Find better ways of cleaning lint warnings, .e.g. no casting.
@@ -46,7 +46,7 @@ int main(int argc, char *argv[]) {
     if (argc != 2) exit(EXIT_FAILURE);                  // check arguments
 
     len = strlen(argv[1]);                              // check input argument
-        pin = argv[1];
+    pin = argv[1];
     if ((len > 4) || (len < 2)) exit(EXIT_FAILURE);
     if (len == 4) pin += 2;
 
