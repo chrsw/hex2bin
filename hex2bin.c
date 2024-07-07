@@ -19,7 +19,6 @@
 ///////////////////////////////////////////////////////////////////////////// 
 
 // TODO:
-// Accept 0xHH, 0xhh.
 // Accept xxh or xxH.
 // Find better ways of cleaning lint warnings, .e.g. no casting.
 // Implement better error handling.
@@ -42,11 +41,15 @@ int main(int argc, char *argv[]) {
 	unsigned char bin[9];
 	int len = 0;
 	char hex[8];
+	char *pin = NULL;
 
 	if (argc != 2) exit(EXIT_FAILURE);
 
 	len = strlen(argv[1]);
-	strncpy(hex, argv[1], len);
+		pin = argv[1];
+	if (len == 4) pin += 2;
+
+	strncpy(hex, pin, 2);
 	str2upper(hex);
 	memset(bin, 0, 9);
 	res = htoi(hex);

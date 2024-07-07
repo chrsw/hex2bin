@@ -14,7 +14,7 @@ lint:			## Check source with splint linter
 	splint hex2bin.c
 
 test: hex2bin		## Run a simple test
-	./hex2bin be > output.txt
+	./hex2bin 0xbe > output.txt
 	diff output.txt golden.txt
 
 clean:			## Remove object code, binaries and test output
