@@ -47,6 +47,7 @@ int main(int argc, char *argv[]) {
 
     len = strlen(argv[1]);
         pin = argv[1];
+    if ((len > 4) || (len < 2)) exit(EXIT_FAILURE);
     if (len == 4) pin += 2;
 
     strncpy(hex, pin, 2);
