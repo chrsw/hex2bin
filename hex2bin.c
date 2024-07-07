@@ -59,7 +59,7 @@ int main(int argc, char *argv[]) {
     printf("main: \tfirst char: %c\n", hex);
     printf("main: \tinput = %u\n", (unsigned int)res);
 #endif
-    dec2bin(res, bin);                                  // convert integer to ascii
+    dec2bin(res, bin);                                  // convert integer to ASCII
     printf("%s\n", (char *)bin);                        // binary representation
     return(EXIT_SUCCESS);
 }
