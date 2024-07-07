@@ -22,6 +22,9 @@
 // Find better ways of cleaning lint warnings, .e.g. no casting.
 // Implement better error handling.
 // What to do on bad input?
+// Add usage function.
+// Move some app and project info from source files to README.
+// Add input checker function.
 //
 //////////////////////////////////////////////////////////////////////////////
 
