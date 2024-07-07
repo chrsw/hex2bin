@@ -43,24 +43,24 @@ int main(int argc, char *argv[]) {
     char hex[8];
     char *pin = NULL;
 
-    if (argc != 2) exit(EXIT_FAILURE);
+    if (argc != 2) exit(EXIT_FAILURE);                  // check arguments
 
-    len = strlen(argv[1]);
+    len = strlen(argv[1]);                              // check input argument
         pin = argv[1];
     if ((len > 4) || (len < 2)) exit(EXIT_FAILURE);
     if (len == 4) pin += 2;
 
-    strncpy(hex, pin, 2);
+    strncpy(hex, pin, 2);                               // rectify input
     str2upper(hex);
     memset(bin, 0, 9);
-    res = htoi(hex);
+    res = htoi(hex);                                    // convert input to integer
 #if DEBUG
     printf("main: \tfirst char: %c\n", argv[1][0]);
     printf("main: \tfirst char: %c\n", hex);
     printf("main: \tinput = %u\n", (unsigned int)res);
 #endif
-    dec2bin(res, bin);
-    printf("%s\n", (char *)bin);
+    dec2bin(res, bin);                                  // convert integer to ascii
+    printf("%s\n", (char *)bin);                        // binary representation
     return(EXIT_SUCCESS);
 }
 
@@ -71,8 +71,7 @@ static unsigned char htoi(char *s) {
 
     char i = (char)EOF;
 
-    // convert low nibble
-    if ((s[1] >= 'A') && (s[1] <= 'F'))
+    if ((s[1] >= 'A') && (s[1] <= 'F'))                 // convert low nibble
         i = s[1] - (char)55;
     else if ((s[1] >= '0') && s[1] <= '9')
         i = s[1] - (char)48;
@@ -80,8 +79,7 @@ static unsigned char htoi(char *s) {
         return (unsigned char)i;
     }
 
-    // convert high nibble
-    if ((s[0] >= 'A') && (s[0] <= 'F'))
+    if ((s[0] >= 'A') && (s[0] <= 'F'))                 // convert high nibble
         i = i + ((s[0] - (char)55) * (char)16);
     else if ((char)toupper(s[0]) >= '0' && (char)toupper(s[0]) <= '9')
         i = i + ((s[0] - (char)48) * (char)16);
@@ -101,9 +99,9 @@ static void dec2bin(unsigned char c, unsigned char bin[]) {
 #ifdef DEBUG
     printf("dec2bin: c = %d\n", c);
 #endif
-    for (i = 7; i >= 0; i--)  {
-        if ((lc % 2) == (unsigned char)0)
-            bin[i] = '0';
+    for (i = 7; i >= 0; i--)  {                         // determine value of
+        if ((lc % 2) == (unsigned char)0)               // every char in
+            bin[i] = '0';                               // string
         else
             bin[i] = '1';
         lc >>= 1;
