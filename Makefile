@@ -15,6 +15,8 @@ lint:			## Check source with splint linter
 
 test: hex2bin		## Run a simple test
 	./hex2bin 0xbe > output.txt
+	./hex2bin 1fH >> output.txt
+	./hex2bin 5a >> output.txt
 	diff output.txt golden.txt
 
 clean:			## Remove object code, binaries and test output
