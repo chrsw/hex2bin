@@ -15,6 +15,7 @@
 // $ make test
 //
 // Use 'make help' for help menu.
+// This is a simple app that does only one thing
 //
 /////////////////////////////////////////////////////////////////////////////
 
@@ -25,6 +26,7 @@
 // Add usage function.
 // Move some app and project info from source files to README.
 // Add input checker function.
+// Add optional command line parameters to format output.
 //
 //////////////////////////////////////////////////////////////////////////////
 
@@ -54,16 +56,20 @@ int main(int argc, char *argv[]) {
     if (len == 4) pin += 2;
 
     strncpy(hex, pin, 2);                               // rectify input
+#if DEBUG
+    printf("main: \tfirst char: %c\n", hex);
+#endif
     str2upper(hex);
     memset(bin, 0, 9);
-    res = htoi(hex);                                    // convert input to integer
+    res = htoi(hex);                              // convert input to integer
 #if DEBUG
     printf("main: \tfirst char: %c\n", argv[1][0]);
     printf("main: \tfirst char: %c\n", hex);
+    pritnf("main: \tlength = %u\n", len);
     printf("main: \tinput = %u\n", (unsigned int)res);
 #endif
-    dec2bin(res, bin);                                  // convert integer to ASCII
-    printf("%s\n", (char *)bin);                        // binary representation
+    dec2bin(res, bin);                            // convert integer to ASCII
+    printf("%s\n", (char *)bin);                  // binary representation
     return(EXIT_SUCCESS);
 }
 
@@ -79,8 +85,8 @@ static unsigned char htoi(char *s) {
     else if ((s[1] >= '0') && s[1] <= '9')
         i = s[1] - (char)48;
     else {
-        return (unsigned char)i;
-    }
+        return (unsigned char)i;                  	// bad data,
+    }                                                   // exit early
 
     if ((s[0] >= 'A') && (s[0] <= 'F'))                 // convert high nibble
         i = i + ((s[0] - (char)55) * (char)16);
@@ -116,16 +122,16 @@ static void dec2bin(unsigned char c, unsigned char bin[]) {
 }
 
 
-// str2upper: convert a string to upper case
+// str2upper:  convert a string to upper case
 static void str2upper(char *s) {
 
     int i = 0;
-    while (*s != '\0') {
+    if (s == NULL) return;
+    do {
         *s = toupper(*s);
-        s++;
         i++;
-    }
+    } while (*s++ != '\0');
 #if DEBUG
-    printf("str2upper: %d\n", i);
+    printf("str2upper: found %s with length %d\n", s, i);
 #endif
 }
